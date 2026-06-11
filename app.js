@@ -1,7 +1,4 @@
-// ── Firebase SDK ──────────────────────────────────────────
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, push, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-
+// ── Firebase (variabili globali da CDN) ───────────────────
 const firebaseConfig = {
   apiKey: "AIzaSyAvnY2G5WDj7BqFbpkl7cg5X_aDLYzRLNg",
   authDomain: "paypos-95078.firebaseapp.com",
@@ -12,8 +9,51 @@ const firebaseConfig = {
   appId: "1:188159550927:web:aa41ba1513af67f0e39eba"
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
-const db = getDatabase(firebaseApp);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// Helpers compatibili con la sintassi usata nel codice
+const ref          = (dbInst, path) => dbInst.ref(path);
+const push         = (refObj, data) => refObj.push(data);
+const runTransaction = (refObj, fn) => refObj.transaction(fn);
+
+// ── EmailJS Config ─────────────────────────────────────────
+const EMAILJS_PUBLIC_KEY  = '0rzjbZmgM3KoQQo2y';
+const EMAILJS_SERVICE_ID  = 'IONOS';
+const EMAILJS_TEMPLATE_ID = 'template_jz3ich8';
+
+async function sendConfirmationEmail(leadData) {
+  try {
+    const payload = {
+      service_id:  EMAILJS_SERVICE_ID,
+      template_id: EMAILJS_TEMPLATE_ID,
+      user_id:     EMAILJS_PUBLIC_KEY,
+      template_params: {
+        nome:                    leadData.nome,
+        cognome:                 leadData.cognome,
+        email:                   leadData.email,
+        pos_tipo:                leadData.pos_tipo,
+        pos_quantita:            leadData.pos_quantita,
+        piano:                   leadData.piano,
+        tipo_cliente:            leadData.tipo_cliente,
+        destinatario_spedizione: leadData.destinatario_spedizione,
+        indirizzo_completo:      leadData.indirizzo_completo,
+      }
+    };
+    const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (res.ok) {
+      console.log('Email di conferma inviata ✓');
+    } else {
+      console.warn('EmailJS error:', res.status, await res.text());
+    }
+  } catch (err) {
+    console.warn('EmailJS send failed:', err.message);
+  }
+}
 
 // ── Visit counter ──────────────────────────────────────────
 (async () => {
@@ -271,6 +311,9 @@ async function handleModalSubmit() {
     console.warn('Firebase save failed (si procede comunque):', err.message);
   }
 
+  // Invia email di conferma
+  await sendConfirmationEmail(leadData);
+
   closeClienteModal();
   setTimeout(() => {
     window.location.href = 'https://business.wamo.io/register?partner=paypos';
@@ -336,6 +379,9 @@ async function handleSubmit() {
     console.warn('Firebase save failed (si procede comunque):', err.message);
     // non blocchiamo il redirect
   }
+
+  // Invia email di conferma
+  await sendConfirmationEmail(leadData);
 
   // Show success
   document.getElementById('lead-form').style.display = 'none';
