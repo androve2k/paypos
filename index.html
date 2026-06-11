@@ -33,14 +33,20 @@
     <div class="section-title">Scegli il tuo POS</div>
     <p class="section-sub">Entrambi i dispositivi sono forniti <strong>gratuitamente</strong>. Seleziona il modello e la quantità.</p>
 
-    <!-- VIDEO UNICO GRANDE -->
-    <div style="width:100%;max-width:640px;margin:0 auto 36px;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(13,35,64,0.15);">
+    <!-- VIDEO UNICO GRANDE + PREVIEW HOVER -->
+    <div class="pos-video-wrap">
       <video autoplay loop muted playsinline style="width:100%;display:block;"><source src="kling_20260610_作品_3D_product_4049_0_copia.mp4" type="video/mp4"></video>
+      <!-- PREVIEW IMMAGINE AL HOVER (overlay) -->
+      <div class="pos-preview-wrap">
+        <img class="pos-preview-img" id="pos-preview-stampante" src="Gemini_Generated_Image_r4vnt1r4vnt1r4vn.png" alt="POS con Stampante">
+        <img class="pos-preview-img" id="pos-preview-base" src="Gemini_Generated_Image_31l4u931l4u931l4.png" alt="POS Base">
+      </div>
     </div>
 
     <div class="pos-grid stagger-children">
       <!-- POS CON STAMPANTE -->
-      <div class="pos-card scale-in" id="card-stampante" onclick="selectPOS('stampante')">
+      <div class="pos-card scale-in" id="card-stampante" onclick="selectPOS('stampante')"
+        onmouseenter="showPosPreview('stampante')" onmouseleave="hidePosPreview()">
         <div class="pos-name">POS con Stampante</div>
         <p class="pos-desc">Terminale completo con stampante integrata per ricevute cartacee. Ideale per negozi, ristoranti e bar.</p>
         <div class="pos-free-tag">🎁 Incluso Gratis</div>
@@ -53,7 +59,8 @@
       </div>
 
       <!-- POS BASE -->
-      <div class="pos-card scale-in" id="card-base" onclick="selectPOS('base')">
+      <div class="pos-card scale-in" id="card-base" onclick="selectPOS('base')"
+        onmouseenter="showPosPreview('base')" onmouseleave="hidePosPreview()">
         <div class="pos-name">POS Base</div>
         <p class="pos-desc">Terminale compatto e ultra-portatile, perfetto per attività mobili, mercati e professionisti in movimento.</p>
         <div class="pos-free-tag">🎁 Incluso Gratis</div>
@@ -597,6 +604,16 @@
       if (tooltip.classList.contains('visible')) hideTooltip();
     });
   })();
+
+  // ── POS Hover Preview ─────────────────────────────────────
+  function showPosPreview(type) {
+    document.getElementById('pos-preview-stampante').classList.toggle('active', type === 'stampante');
+    document.getElementById('pos-preview-base').classList.toggle('active', type === 'base');
+  }
+  function hidePosPreview() {
+    document.getElementById('pos-preview-stampante').classList.remove('active');
+    document.getElementById('pos-preview-base').classList.remove('active');
+  }
 </script>
 </body>
 </html>

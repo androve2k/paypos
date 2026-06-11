@@ -1498,3 +1498,39 @@
   opacity: 0 !important;
   pointer-events: none;
 }
+
+/* ── POS VIDEO + HOVER PREVIEW ── */
+.pos-video-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto 36px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(13,35,64,0.15);
+}
+.pos-preview-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.pos-preview-img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  height: 92%;
+  width: auto;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.45));
+}
+.pos-preview-img.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
