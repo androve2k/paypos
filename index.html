@@ -38,9 +38,9 @@
       <video autoplay loop muted playsinline style="width:100%;display:block;"><source src="kling_20260610_作品_3D_product_4049_0_copia.mp4" type="video/mp4"></video>
     </div>
 
-    <div class="pos-grid">
+    <div class="pos-grid stagger-children">
       <!-- POS CON STAMPANTE -->
-      <div class="pos-card" id="card-stampante" onclick="selectPOS('stampante')">
+      <div class="pos-card scale-in" id="card-stampante" onclick="selectPOS('stampante')">
         <div class="pos-name">POS con Stampante</div>
         <p class="pos-desc">Terminale completo con stampante integrata per ricevute cartacee. Ideale per negozi, ristoranti e bar.</p>
         <div class="pos-free-tag">🎁 Incluso Gratis</div>
@@ -53,7 +53,7 @@
       </div>
 
       <!-- POS BASE -->
-      <div class="pos-card" id="card-base" onclick="selectPOS('base')">
+      <div class="pos-card scale-in" id="card-base" onclick="selectPOS('base')">
         <div class="pos-name">POS Base</div>
         <p class="pos-desc">Terminale compatto e ultra-portatile, perfetto per attività mobili, mercati e professionisti in movimento.</p>
         <div class="pos-free-tag">🎁 Incluso Gratis</div>
@@ -85,10 +85,10 @@
   <div class="container">
 
     <!-- INDIVIDUAL PLANS -->
-    <div class="plans-grid" id="plans-individual">
+    <div class="plans-grid stagger-children" id="plans-individual">
 
       <!-- FREEMIUM -->
-      <div class="plan-card" id="plan-freemium" onclick="selectPlan('freemium','Freemium','individual')">
+      <div class="plan-card scale-in" id="plan-freemium" onclick="selectPlan('freemium','Freemium','individual')">
         <div class="plan-header">
           <div class="plan-name">Freemium</div>
           <div class="plan-tagline">Per chi è all'inizio e vuole un conto business semplice e essenziale</div>
@@ -110,7 +110,7 @@
       </div>
 
       <!-- SMART -->
-      <div class="plan-card popular" id="plan-smart" onclick="selectPlan('smart','Smart','individual')">
+      <div class="plan-card popular scale-in" id="plan-smart" onclick="selectPlan('smart','Smart','individual')">
         <div class="plan-popular-badge">⚡ Più Scelto</div>
         <div class="plan-header">
           <div class="plan-name">Smart</div>
@@ -137,7 +137,7 @@
       </div>
 
       <!-- PRO -->
-      <div class="plan-card" id="plan-pro" onclick="selectPlan('pro','Pro','individual')">
+      <div class="plan-card scale-in" id="plan-pro" onclick="selectPlan('pro','Pro','individual')">
         <div class="plan-header">
           <div class="plan-name">Pro</div>
           <div class="plan-tagline">Per chi gestisce più attività, valute e centri di costo e ha bisogno di efficienza e scalabilità.</div>
@@ -164,10 +164,10 @@
     </div>
 
     <!-- BUSINESS PLANS -->
-    <div class="plans-grid" id="plans-business" style="display:none">
+    <div class="plans-grid stagger-children" id="plans-business" style="display:none">
 
       <!-- FREEMIUM BIZ -->
-      <div class="plan-card" id="plan-biz-freemium" onclick="selectPlan('biz-freemium','Freemium','business')">
+      <div class="plan-card scale-in" id="plan-biz-freemium" onclick="selectPlan('biz-freemium','Freemium','business')">
         <div class="plan-header">
           <div class="plan-name">Freemium</div>
           <div class="plan-tagline">Solo strumenti utili. Inizia gratis, paghi solo quando effettui una transazione.</div>
@@ -191,7 +191,7 @@
       </div>
 
       <!-- START -->
-      <div class="plan-card popular" id="plan-biz-start" onclick="selectPlan('biz-start','Start','business')">
+      <div class="plan-card popular scale-in" id="plan-biz-start" onclick="selectPlan('biz-start','Start','business')">
         <div class="plan-popular-badge">⚡ Consigliato</div>
         <div class="plan-header">
           <div class="plan-name">Start</div>
@@ -216,7 +216,7 @@
       </div>
 
       <!-- GROW -->
-      <div class="plan-card" id="plan-biz-grow" onclick="selectPlan('biz-grow','Grow','business')">
+      <div class="plan-card scale-in" id="plan-biz-grow" onclick="selectPlan('biz-grow','Grow','business')">
         <div class="plan-header">
           <div class="plan-name">Grow</div>
           <div class="plan-tagline">Per le aziende che gestiscono più progetti e hanno bisogno di maggior visibilità e controllo sulle finanze e il flusso di cassa.</div>
@@ -482,6 +482,9 @@
   </svg>
 </button>
 
+<!-- Tooltip chat -->
+<div id="pp-chat-tooltip">Hai domande? 👋</div>
+
 <!-- Chat window -->
 <div id="pp-chat-window">
   <div class="pp-header">
@@ -532,17 +535,68 @@
   }
 </script>
 <script>
-  // Fade-in on scroll via IntersectionObserver
+  // ── Scroll animations (IntersectionObserver) ──────────────
+  const animClasses = ['fade-in', 'fade-in-left', 'fade-in-right', 'scale-in'];
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
+        // Se il padre ha .stagger-children, anima anche i figli con le stesse classi
+        if (e.target.classList.contains('stagger-children')) {
+          e.target.querySelectorAll(animClasses.map(c => '.' + c).join(',')).forEach(child => {
+            child.classList.add('visible');
+          });
+        }
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  // Osserva sezioni e contenitori
+  document.querySelectorAll(animClasses.map(c => '.' + c).join(',')).forEach(el => {
+    observer.observe(el);
+  });
+  // Osserva anche i contenitori stagger
+  document.querySelectorAll('.stagger-children').forEach(el => observer.observe(el));
+
+  // ── Chat tooltip ──────────────────────────────────────────
+  (function() {
+    const tooltip = document.getElementById('pp-chat-tooltip');
+    const bubble  = document.getElementById('pp-chat-bubble');
+    if (!tooltip || !bubble) return;
+
+    let tooltipTimer, hideTimer;
+
+    function showTooltip() {
+      if (bubble.classList.contains('open')) return; // chat già aperta
+      tooltip.classList.add('visible');
+      tooltip.classList.remove('hidden');
+      // Auto-hide dopo 5 secondi
+      hideTimer = setTimeout(hideTooltip, 5000);
+    }
+
+    function hideTooltip() {
+      tooltip.classList.remove('visible');
+      clearTimeout(hideTimer);
+    }
+
+    // Appare dopo 5 secondi dal caricamento
+    tooltipTimer = setTimeout(showTooltip, 5000);
+
+    // Nasconde al click sul bubble
+    bubble.addEventListener('click', function() {
+      hideTooltip();
+      tooltip.classList.add('hidden');
+      clearTimeout(tooltipTimer);
+    });
+
+    // Nasconde al hover sul bubble (l'utente l'ha visto)
+    bubble.addEventListener('mouseenter', function() {
+      clearTimeout(tooltipTimer);
+      if (tooltip.classList.contains('visible')) hideTooltip();
+    });
+  })();
 </script>
 </body>
 </html>
