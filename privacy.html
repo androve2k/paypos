@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy – PayPOS</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231565C0'/%3E%3Ctext x='5' y='23' font-family='Arial' font-weight='bold' font-size='18' fill='white'%3EP%3C/text%3E%3Crect x='16' y='8' width='10' height='16' rx='2' fill='white' opacity='0.9'/%3E%3Crect x='17' y='11' width='8' height='2' rx='1' fill='%231565C0'/%3E%3Ccircle cx='21' cy='20' r='2' fill='%2300c853'/%3E%3C/svg%3E">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0D2340;
+    --blue: #1565C0;
+    --orange: #F57C00;
+    --orange-light: #FF9800;
+    --white: #ffffff;
+    --off-white: #F8FAFF;
+    --gray-light: #EEF2F8;
+    --gray: #6B7A99;
+    --green: #2E7D32;
+    --green-light: #E8F5E9;
+    --shadow: 0 4px 24px rgba(13,35,64,0.10);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--off-white);
+    color: var(--navy);
+    line-height: 1.7;
+  }
+
+  /* ── NAVBAR ── */
+  .navbar {
+    background: var(--navy);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(13,35,64,0.3);
+  }
+  .navbar-brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .navbar-brand span { color: var(--orange-light); }
+  .navbar-back {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color .2s;
+  }
+  .navbar-back:hover { color: white; }
+
+  /* ── HERO STRIP ── */
+  .privacy-hero {
+    background: linear-gradient(135deg, #0D2340 0%, #1565C0 100%);
+    padding: 56px 24px 48px;
+    text-align: center;
+  }
+  .privacy-hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.85);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 100px;
+    padding: 5px 16px;
+    margin-bottom: 18px;
+  }
+  .privacy-hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 12px;
+  }
+  .privacy-hero p {
+    color: rgba(255,255,255,0.65);
+    font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .privacy-wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* ── SECTION CARD ── */
+  .priv-card {
+    background: white;
+    border-radius: 20px;
+    padding: 36px 40px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--gray-light);
+  }
+
+  .priv-card h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .priv-card h2 .icon {
+    width: 36px;
+    height: 36px;
+    background: var(--gray-light);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  .priv-card p {
+    font-size: 14.5px;
+    color: #3a4a6b;
+    margin-bottom: 10px;
+  }
+  .priv-card p:last-child { margin-bottom: 0; }
+
+  .priv-card ul {
+    margin: 10px 0 10px 20px;
+    font-size: 14.5px;
+    color: #3a4a6b;
+  }
+  .priv-card ul li { margin-bottom: 6px; }
+
+  .priv-card strong { color: var(--navy); font-weight: 600; }
+
+  /* Highlight box */
+  .highlight-box {
+    background: var(--off-white);
+    border-left: 4px solid var(--blue);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: var(--navy);
+  }
+
+  /* Rights grid */
+  .rights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .right-item {
+    background: var(--green-light);
+    border: 1px solid #a5d6a7;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 13.5px;
+    color: #1b5e20;
+  }
+  .right-item strong { display: block; font-size: 14px; color: #1b5e20; margin-bottom: 4px; }
+
+  /* Contact box */
+  .contact-box {
+    background: linear-gradient(135deg, #EEF2F8, #e3ecff);
+    border: 1.5px solid #b3c8f5;
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-top: 16px;
+  }
+  .contact-box p { margin-bottom: 6px; font-size: 14.5px; }
+  .contact-box a { color: var(--blue); font-weight: 600; text-decoration: none; }
+  .contact-box a:hover { text-decoration: underline; }
+
+  /* Last updated */
+  .last-updated {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-light);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .footer-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+  }
+  footer a {
+    color: rgba(255,255,255,0.65);
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color .2s;
+  }
+  footer a:hover { color: white; }
+  .footer-links { display: flex; gap: 20px; }
+
+  @media (max-width: 600px) {
+    .priv-card { padding: 24px 20px; }
+    .rights-grid { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <a class="navbar-brand" href="index.html">Pay<span>POS</span></a>
+  <a class="navbar-back" href="index.html">← Torna al sito</a>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="privacy-hero">
+  <div class="badge">GDPR – Reg. UE 2016/679</div>
+  <h1>Privacy Policy</h1>
+  <p>Come trattiamo i tuoi dati personali e quali diritti hai nei nostri confronti.</p>
+</div>
+
+<!-- ── CONTENT ── -->
+<div class="privacy-wrap">
+
+  <!-- 1. TITOLARE -->
+  <div class="priv-card">
+    <h2><span class="icon">🏢</span> Titolare del Trattamento</h2>
+    <p>Il titolare del trattamento dei dati personali è:</p>
+    <div class="highlight-box">
+      <strong>PayPOS</strong><br>
+      E-mail: <strong>support@paypos.store</strong>
+    </div>
+    <p>Per qualsiasi comunicazione relativa al trattamento dei dati personali, l'interessato può contattare il Titolare all'indirizzo e-mail sopra indicato.</p>
+  </div>
+
+  <!-- 2. DATI RACCOLTI -->
+  <div class="priv-card">
+    <h2><span class="icon">📋</span> Dati Personali Raccolti</h2>
+    <p>In occasione della compilazione del modulo di richiesta presente sul sito, raccogliamo i seguenti dati personali:</p>
+    <ul>
+      <li><strong>Nome e Cognome</strong> – per identificare l'intestatario della richiesta</li>
+      <li><strong>Indirizzo e-mail</strong> – per inviare conferme e comunicazioni commerciali correlate</li>
+      <li><strong>Indirizzo di spedizione</strong> (via, città, CAP, provincia) – per la consegna del dispositivo POS</li>
+      <li><strong>Scelte di prodotto</strong> (tipo di POS, piano selezionato, quantità) – per elaborare la richiesta correttamente</li>
+    </ul>
+    <p>Non raccogliamo dati sensibili ai sensi dell'art. 9 GDPR (es. dati sulla salute, orientamento politico, ecc.).</p>
+    <p><strong>Cookie:</strong> il sito utilizza esclusivamente cookie tecnici necessari al funzionamento della pagina. Non vengono utilizzati cookie di profilazione o di terze parti a fini pubblicitari.</p>
+  </div>
+
+  <!-- 3. FINALITÀ -->
+  <div class="priv-card">
+    <h2><span class="icon">🎯</span> Finalità del Trattamento</h2>
+    <p>I dati personali raccolti sono trattati per le seguenti finalità:</p>
+    <ul>
+      <li><strong>Gestione della richiesta di attivazione</strong>: elaborare la richiesta di adesione al servizio PayPOS e procedere con la registrazione sulla piattaforma partner (Wamo).</li>
+      <li><strong>Spedizione del dispositivo POS</strong>: utilizzare i dati di indirizzo per organizzare la consegna del terminale.</li>
+      <li><strong>Comunicazioni commerciali correlate</strong>: inviare informazioni sul servizio richiesto, conferme d'ordine e aggiornamenti strettamente connessi alla richiesta presentata.</li>
+    </ul>
+    <p>I dati <strong>non vengono ceduti a terzi</strong> per finalità di marketing autonomo, né vengono venduti.</p>
+  </div>
+
+  <!-- 4. BASE GIURIDICA -->
+  <div class="priv-card">
+    <h2><span class="icon">⚖️</span> Base Giuridica</h2>
+    <p>Il trattamento dei dati è fondato sulle seguenti basi giuridiche ai sensi dell'art. 6 GDPR:</p>
+    <ul>
+      <li><strong>Esecuzione di misure precontrattuali</strong> (art. 6, par. 1, lett. b): il trattamento è necessario per rispondere alla richiesta dell'interessato e per fornire il servizio.</li>
+      <li><strong>Consenso dell'interessato</strong> (art. 6, par. 1, lett. a): per l'invio di eventuali comunicazioni informative successive, previo esplicito consenso prestato tramite la spunta nel modulo.</li>
+    </ul>
+  </div>
+
+  <!-- 5. CONSERVAZIONE -->
+  <div class="priv-card">
+    <h2><span class="icon">🗄️</span> Tempi di Conservazione</h2>
+    <p>I dati personali sono conservati per il tempo strettamente necessario alle finalità per cui sono stati raccolti:</p>
+    <ul>
+      <li><strong>Dati della richiesta</strong>: fino a 24 mesi dalla data di raccolta, salvo diverso obbligo di legge o necessità di gestire eventuali contestazioni.</li>
+      <li><strong>Dati di spedizione</strong>: fino all'evasione dell'ordine e per il successivo periodo necessario alla gestione di eventuali reclami (massimo 12 mesi).</li>
+      <li><strong>Registri di consenso</strong>: per l'intera durata del rapporto commerciale e fino a 5 anni dalla sua conclusione, ai fini di prova del consenso.</li>
+    </ul>
+    <p>Trascorso il periodo di conservazione, i dati vengono cancellati o resi anonimi in modo irreversibile.</p>
+  </div>
+
+  <!-- 6. DIRITTI -->
+  <div class="priv-card">
+    <h2><span class="icon">🛡️</span> Diritti dell'Interessato (GDPR)</h2>
+    <p>In qualità di interessato, ai sensi degli artt. 15–22 del Regolamento UE 2016/679, hai il diritto di:</p>
+    <div class="rights-grid">
+      <div class="right-item">
+        <strong>Accesso (art. 15)</strong>
+        Ottenere conferma che sia in corso un trattamento e ricevere copia dei tuoi dati.
+      </div>
+      <div class="right-item">
+        <strong>Rettifica (art. 16)</strong>
+        Richiedere la correzione di dati inesatti o il completamento di dati incompleti.
+      </div>
+      <div class="right-item">
+        <strong>Cancellazione (art. 17)</strong>
+        Ottenere la cancellazione dei tuoi dati personali ("diritto all'oblio").
+      </div>
+      <div class="right-item">
+        <strong>Limitazione (art. 18)</strong>
+        Richiedere la limitazione del trattamento in determinati casi previsti dalla norma.
+      </div>
+      <div class="right-item">
+        <strong>Portabilità (art. 20)</strong>
+        Ricevere i tuoi dati in formato strutturato e leggibile da dispositivo automatico.
+      </div>
+      <div class="right-item">
+        <strong>Opposizione (art. 21)</strong>
+        Opporti al trattamento dei tuoi dati, in particolare per finalità di marketing diretto.
+      </div>
+    </div>
+    <p style="margin-top:16px;">Hai inoltre il diritto di proporre reclamo all'<strong>Autorità Garante per la protezione dei dati personali</strong> (<a href="https://www.garanteprivacy.it" target="_blank" rel="noopener" style="color:var(--blue);">www.garanteprivacy.it</a>) qualora ritenga che il trattamento violi il Regolamento.</p>
+  </div>
+
+  <!-- 7. CONTATTI -->
+  <div class="priv-card">
+    <h2><span class="icon">✉️</span> Come Esercitare i Tuoi Diritti</h2>
+    <p>Per esercitare i diritti di cui sopra, o per qualsiasi domanda relativa al trattamento dei tuoi dati personali, puoi contattarci:</p>
+    <div class="contact-box">
+      <p>📧 E-mail: <a href="mailto:support@paypos.store">support@paypos.store</a></p>
+      <p style="margin-top:10px;font-size:13px;color:var(--gray);">Risponderemo alla tua richiesta entro <strong>30 giorni</strong> dal ricevimento, come previsto dall'art. 12 GDPR. In caso di richieste complesse, il termine può essere prorogato di ulteriori 60 giorni, previa comunicazione.</p>
+    </div>
+  </div>
+
+  <div class="last-updated">
+    Ultimo aggiornamento: <strong>Giugno 2026</strong> &nbsp;·&nbsp; PayPOS – Tutti i diritti riservati
+  </div>
+
+</div><!-- /.privacy-wrap -->
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <p>© 2026 PayPOS. Tutti i diritti riservati.</p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="index.html">Torna al sito</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
