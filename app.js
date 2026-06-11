@@ -17,41 +17,21 @@ const ref          = (dbInst, path) => dbInst.ref(path);
 const push         = (refObj, data) => refObj.push(data);
 const runTransaction = (refObj, fn) => refObj.transaction(fn);
 
-// ── EmailJS Config ─────────────────────────────────────────
-const EMAILJS_PUBLIC_KEY  = '0rzjbZmgM3KoQQo2y';
-const EMAILJS_SERVICE_ID  = 'IONOS';
-const EMAILJS_TEMPLATE_ID = 'template_jz3ich8';
-
+// ── Email (via Netlify Function) ───────────────────────────
 async function sendConfirmationEmail(leadData) {
   try {
-    const payload = {
-      service_id:  EMAILJS_SERVICE_ID,
-      template_id: EMAILJS_TEMPLATE_ID,
-      user_id:     EMAILJS_PUBLIC_KEY,
-      template_params: {
-        nome:                    leadData.nome,
-        cognome:                 leadData.cognome,
-        email:                   leadData.email,
-        pos_tipo:                leadData.pos_tipo,
-        pos_quantita:            leadData.pos_quantita,
-        piano:                   leadData.piano,
-        tipo_cliente:            leadData.tipo_cliente,
-        destinatario_spedizione: leadData.destinatario_spedizione,
-        indirizzo_completo:      leadData.indirizzo_completo,
-      }
-    };
-    const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+    const res = await fetch('/api/send-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(leadData)
     });
     if (res.ok) {
       console.log('Email di conferma inviata ✓');
     } else {
-      console.warn('EmailJS error:', res.status, await res.text());
+      console.warn('Send email error:', res.status, await res.text());
     }
   } catch (err) {
-    console.warn('EmailJS send failed:', err.message);
+    console.warn('Send email failed:', err.message);
   }
 }
 

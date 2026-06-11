@@ -38,3 +38,8 @@
   from = "/api/leads"
   to = "/.netlify/functions/leads"
   status = 200
+
+[[redirects]]
+  from = "/api/send-email"
+  to = "/.netlify/functions/send-email"
+  status = 200
