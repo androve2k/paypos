@@ -1,6 +1,6 @@
 // ── Service Worker PayPOS ─────────────────────────────────────────────────
 // ⚠️ INCREMENTA questo numero ad ogni deploy per forzare aggiornamento cache
-var CACHE_NAME = 'paypos-v3';
+var CACHE_NAME = 'paypos-v4';
 
 var FILES = [
   '/',
